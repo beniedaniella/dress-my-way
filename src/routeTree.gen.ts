@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AjouterRouteImport } from './routes/ajouter'
+import { Route as DressingRouteImport } from './routes/dressing'
+import { Route as PlanningRouteImport } from './routes/planning'
+import { Route as ProfilRouteImport } from './routes/profil'
+import { Route as SalonRouteImport } from './routes/salon'
+import { Route as ArticleIdRouteImport } from './routes/article/$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AjouterRoute = AjouterRouteImport.update({
+  id: '/ajouter',
+  path: '/ajouter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DressingRoute = DressingRouteImport.update({
+  id: '/dressing',
+  path: '/dressing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanningRoute = PlanningRouteImport.update({
+  id: '/planning',
+  path: '/planning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfilRoute = ProfilRouteImport.update({
+  id: '/profil',
+  path: '/profil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SalonRoute = SalonRouteImport.update({
+  id: '/salon',
+  path: '/salon',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArticleIdRoute = ArticleIdRouteImport.update({
+  id: '/article/$id',
+  path: '/article/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ajouter': typeof AjouterRoute
+  '/dressing': typeof DressingRoute
+  '/planning': typeof PlanningRoute
+  '/profil': typeof ProfilRoute
+  '/salon': typeof SalonRoute
+  '/article/$id': typeof ArticleIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ajouter': typeof AjouterRoute
+  '/dressing': typeof DressingRoute
+  '/planning': typeof PlanningRoute
+  '/profil': typeof ProfilRoute
+  '/salon': typeof SalonRoute
+  '/article/$id': typeof ArticleIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ajouter': typeof AjouterRoute
+  '/dressing': typeof DressingRoute
+  '/planning': typeof PlanningRoute
+  '/profil': typeof ProfilRoute
+  '/salon': typeof SalonRoute
+  '/article/$id': typeof ArticleIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ajouter'
+    | '/dressing'
+    | '/planning'
+    | '/profil'
+    | '/salon'
+    | '/article/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ajouter'
+    | '/dressing'
+    | '/planning'
+    | '/profil'
+    | '/salon'
+    | '/article/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/ajouter'
+    | '/dressing'
+    | '/planning'
+    | '/profil'
+    | '/salon'
+    | '/article/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AjouterRoute: typeof AjouterRoute
+  DressingRoute: typeof DressingRoute
+  PlanningRoute: typeof PlanningRoute
+  ProfilRoute: typeof ProfilRoute
+  SalonRoute: typeof SalonRoute
+  ArticleIdRoute: typeof ArticleIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ajouter': {
+      id: '/ajouter'
+      path: '/ajouter'
+      fullPath: '/ajouter'
+      preLoaderRoute: typeof AjouterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dressing': {
+      id: '/dressing'
+      path: '/dressing'
+      fullPath: '/dressing'
+      preLoaderRoute: typeof DressingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/planning': {
+      id: '/planning'
+      path: '/planning'
+      fullPath: '/planning'
+      preLoaderRoute: typeof PlanningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profil': {
+      id: '/profil'
+      path: '/profil'
+      fullPath: '/profil'
+      preLoaderRoute: typeof ProfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/salon': {
+      id: '/salon'
+      path: '/salon'
+      fullPath: '/salon'
+      preLoaderRoute: typeof SalonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/article/$id': {
+      id: '/article/$id'
+      path: '/article/$id'
+      fullPath: '/article/$id'
+      preLoaderRoute: typeof ArticleIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AjouterRoute: AjouterRoute,
+  DressingRoute: DressingRoute,
+  PlanningRoute: PlanningRoute,
+  ProfilRoute: ProfilRoute,
+  SalonRoute: SalonRoute,
+  ArticleIdRoute: ArticleIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
