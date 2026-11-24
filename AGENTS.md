@@ -33,3 +33,7 @@ use the editor.
 - Wardrobe, plan and profile live in browser IndexedDB (src/lib/db.ts) — the app must work fully offline without an account.
 - Stylist AI calls go through one server function with automatic relay between stylists; every suggested item id is checked against the wardrobe (validateIds) and the local rules engine (src/lib/rules.ts) is the offline fallback.
 - Service worker is registered only via src/lib/pwa.ts, which refuses preview/dev hosts.
+
+## Data
+- IndexedDB schema changes go through a versioned `upgrade` in `src/lib/db.ts` plus an idempotent, single-transaction migration in `src/lib/migrate.ts`; never delete or clear an existing store — users' wardrobes live only on their phone.
+- Planning never creates WearRecords; only an explicit "worn" action does — keeps usage stats truthful.
