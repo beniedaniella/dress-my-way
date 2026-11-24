@@ -1,0 +1,42 @@
+
+name: Phase 0 - Reference checks
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "audit/**"
+      - "copilot/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: phase-0-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-checks:
+    name: Build, lint and tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        run: bun run build
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Tests
+        run: bun run test
+  
